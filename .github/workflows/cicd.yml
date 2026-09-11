@@ -100,7 +100,7 @@ jobs:
         uses: actions/checkout@v7
         with:
           # A tag-ref checkout fetches only the tag it is checking out.
-          # check-tag-version.bash asks for every tag at HEAD, so that one
+          # git::assert_tag_version asks for every tag at HEAD, so that one
           # would do here — but the chart release adds a second tag to release
           # commits, and reasoning about which scripts need to see it is worse
           # than just fetching them all.
@@ -112,8 +112,13 @@ jobs:
           python-version: "3.14"
           enable-cache: true
 
+      - name: Install the release tools
+        uses: releasetools/cli@v0
+
+      # The version is passed in rather than read here, so nothing in this
+      # repository needs a TOML parser to state what it is releasing.
       - name: Check the tag matches the project version
-        run: scripts/check-tag-version.bash
+        run: rt git::assert_tag_version "$(uv version --short)"
 
       - name: Build
         run: uv build

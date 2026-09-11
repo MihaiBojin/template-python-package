@@ -157,8 +157,8 @@ which is exempt from that rule, so no long-lived personal access token is
 needed. Pushing a `v0.*` tag by hand still works and takes the ordinary `push`
 path.
 
-`build` runs `scripts/check-tag-version.bash` first and refuses to publish if
-the tag and `pyproject.toml` disagree, so a forgotten bump fails the release
+`build` runs `rt git::assert_tag_version "$(uv version --short)"` first and
+refuses to publish if the tag and `pyproject.toml` disagree, so a forgotten bump fails the release
 rather than republishing the previous version. From there the pipeline builds
 once and hands that same artifact to TestPyPI and then PyPI, verifies it
 installs from the real index, builds and pushes multi-platform images with a
@@ -299,6 +299,7 @@ chart resolves from the published `gh-pages` index.
 
 One consequence worth knowing: `cr` tags each chart release
 `<chart>-<version>` on the **same commit** as `v<version>`, so from the first
-release onwards a release commit carries two tags. `get_tags_at_head` in
+release onwards a release commit carries two tags. `get_tag_at_head` in
 `scripts/functions.bash` filters to `v*` for exactly that reason — unfiltered,
-git's refname ordering hands back the chart tag first.
+git's refname ordering hands back the chart tag first. `rt git::tags_at_head`
+filters the same way.
