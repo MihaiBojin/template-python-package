@@ -51,7 +51,7 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Set up uv and Python ${{ matrix.python-version }}
-        uses: astral-sh/setup-uv@v10.0.0
+        uses: astral-sh/setup-uv@v10.1.0
         with:
           python-version: ${{ matrix.python-version }}
           enable-cache: true
@@ -107,7 +107,7 @@ jobs:
           fetch-tags: true
 
       - name: Set up uv
-        uses: astral-sh/setup-uv@v10.0.0
+        uses: astral-sh/setup-uv@v10.1.0
         with:
           python-version: "3.14"
           enable-cache: true
@@ -148,7 +148,7 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Set up uv
-        uses: astral-sh/setup-uv@v10.0.0
+        uses: astral-sh/setup-uv@v10.1.0
         with:
           python-version: "3.14"
           enable-cache: true
@@ -180,7 +180,7 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Set up uv
-        uses: astral-sh/setup-uv@v10.0.0
+        uses: astral-sh/setup-uv@v10.1.0
         with:
           python-version: "3.14"
           enable-cache: true
@@ -230,7 +230,7 @@ jobs:
       # The image builds its own dependencies from uv.lock; uv is needed here
       # only so image-metadata.bash can read pyproject.toml.
       - name: Set up uv
-        uses: astral-sh/setup-uv@v10.0.0
+        uses: astral-sh/setup-uv@v10.1.0
         with:
           python-version: "3.14"
           enable-cache: true
@@ -303,7 +303,7 @@ jobs:
       # The image builds its own dependencies from uv.lock; uv is needed here
       # only so image-metadata.bash can read pyproject.toml.
       - name: Set up uv
-        uses: astral-sh/setup-uv@v10.0.0
+        uses: astral-sh/setup-uv@v10.1.0
         with:
           python-version: "3.14"
           enable-cache: true
