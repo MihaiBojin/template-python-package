@@ -431,7 +431,7 @@ jobs:
       # never seen (422). Packaging and uploading directly needs no commit at
       # all, and aims the release at $GITHUB_SHA, which is on the remote.
       - name: Install chart-releaser
-        uses: helm/chart-releaser-action@v1.7.0
+        uses: helm/chart-releaser-action@v1.8.0
         with:
           install_only: true
 
