@@ -65,7 +65,9 @@ lint-test (3.11 → 3.14) ─> build ─> publish-test ─> publish ─┬─> p
 helm-lint                                                    └─> push-ghcr ──────┴─> release ─> helm
 ```
 
-`lint-test` and `helm-lint` run on every pull request and every push to `main`.
+`lint-test` and `helm-lint` run on every pull request and every push to `main`,
+each on `ubuntu-24.04` and `ubuntu-26.04`. Every other job runs on `ubuntu-24.04`
+only, because it builds, publishes or releases once.
 Everything from `build` onwards runs only on a `v0.*` tag.
 
 PyPI gates the image builds on purpose: a PyPI upload cannot be undone or
