@@ -94,7 +94,7 @@ jobs:
   # byte-for-byte what was tested and what TestPyPI accepted.
   build:
     name: Build Python package
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs: lint-test
 
     # `false &&` keeps publishing off in the template, which has nothing to
@@ -139,7 +139,7 @@ jobs:
 
   publish-test:
     name: Publish package to TestPyPI
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs: build
     # Binds this job to the trusted publisher registered for `testpypi`.
     environment: testpypi
@@ -173,7 +173,7 @@ jobs:
 
   publish:
     name: Publish package to PyPI
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs: publish-test
     # Binds this job to the trusted publisher registered for `pypi`. Add a
     # required reviewer on this environment if you want a manual gate before
@@ -209,7 +209,7 @@ jobs:
 
   push-dockerhub:
     name: Build and push to Docker Hub
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs: publish
 
     # Opt-in: set the DOCKERHUB_USERNAME repository *variable* (and a
@@ -287,7 +287,7 @@ jobs:
 
   push-ghcr:
     name: Build and push to GitHub Container Registry
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs: publish
 
     permissions:
@@ -360,7 +360,7 @@ jobs:
 
   release:
     name: Release
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs:
       - publish
       - push-dockerhub
@@ -392,7 +392,7 @@ jobs:
 
   helm:
     name: Publish Helm Chart
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs:
       - helm-lint
       - release
